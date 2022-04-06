@@ -4,42 +4,45 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController2D controller;
-    float horizontalMove = 0f;
-    public float runSpeed = 40f;
-    bool jump = false;
-    public Animator animator;
-    public AudioSource audioSource;
+    
+    Vector2 movement;
+    
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] public float moveSpeed = 40f;
+    [SerializeField] private Rigidbody2D rb;
+
+    public CharacterController2D controller;
+    [SerializeField] private Animator animator;
+
 
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed; // Left is -1, Right is 1
+        movement.x = Input.GetAxisRaw("Horizontal") * moveSpeed; // Left is -1, Right is 1
+        movement.y = Input.GetAxisRaw("Vertical") * moveSpeed; // Left is -1, Right is 1
 
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
 
-        if(Input.GetButtonDown("Jump"))
-        {
-            jump = true;
-            animator.SetBool("IsJumping", true);
-            audioSource.Play();
-        }
     }
 
     void FixedUpdate()
     {
-        controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
-        jump = false;
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
-    public void OnLanding()
-    {
-        animator.SetBool("IsJumping", false);
-    }
+    
 }
+
+/*
+DONE:
+Set up blend tree animation
+Get car sprite
+Make car move
+
+NEXT UP:
+Make the idle animation work
+Make bad guys that chase you
+Make obstacles
+ */
