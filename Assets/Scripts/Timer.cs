@@ -22,9 +22,11 @@ public class Timer : MonoBehaviour
     {
         if (timerRunning)
         {
-            timerValue -= Time.deltaTime;
+            timerValue += Time.deltaTime;
+            /* // Old code on if the timer ran out
             if (timerValue < 0f && timerRunning)
                 TimerRunOut();
+            */
         }
 
         timerText.text = timerValue.ToString("0.0");
