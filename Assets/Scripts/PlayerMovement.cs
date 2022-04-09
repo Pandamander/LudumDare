@@ -4,60 +4,47 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
-    Vector2 movement;
-    
+    public float accelerationFactor = 10.0f;
+    public float turnFactor = 3.5f;
+    public float driftFactor = 0.95f;
+    public Rigidbody2D vehicleRb;
 
-    [SerializeField] public float moveSpeed = 40f;
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] public float maxSpeed = 40f;
+    float accelerationInput = 0.0f;
+    float steeringInput = 0.0f;
+    float rotationAngle = 0.0f;
+    float dragFactor = 3.0f;
 
-    public CharacterController2D controller;
-    [SerializeField] private Animator animator;
-
-
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        movement.x = Input.GetAxisRaw("Horizontal") * moveSpeed; // Left is -1, Right is 1
-        movement.y = Input.GetAxisRaw("Vertical") * moveSpeed; 
-
-        // Animate the car, remembering the last direction
-        if (movement.x != 0)
+        // Apply Force
+        if (accelerationInput == 0)
         {
-            animator.SetFloat("Horizontal", movement.x);
-            animator.SetFloat("Vertical", 0);
+            vehicleRb.drag = Mathf.Lerp(
+                vehicleRb.drag, dragFactor,
+                Time.fixedDeltaTime * dragFactor
+            );
         }
-        
-        if (movement.y != 0)
+        else
         {
-            animator.SetFloat("Horizontal", 0);
-            animator.SetFloat("Vertical", movement.y);
+            vehicleRb.drag = 0;
         }
-            
+        Vector2 accelerationForce = transform.up * accelerationInput * accelerationFactor;
+        vehicleRb.AddForce(accelerationForce, ForceMode2D.Force);
 
-       
-        //animator.SetFloat("Speed", movement.sqrMagnitude);
+        // Apply Drift Factor
+        Vector2 forwardVelocity = transform.up * Vector2.Dot(vehicleRb.velocity, transform.up);
+        Vector2 rightVelocity = transform.right * Vector2.Dot(vehicleRb.velocity, transform.right);
+        vehicleRb.velocity = forwardVelocity + (rightVelocity * driftFactor);
 
+        // Apply Steering
+        float steeringMinSpeedFactor = Mathf.Clamp01(vehicleRb.velocity.magnitude / 2);
+        rotationAngle -= steeringInput * turnFactor * steeringMinSpeedFactor;
+        vehicleRb.MoveRotation(rotationAngle);
     }
 
-    void FixedUpdate() // Runs every 0.02 seconds
+    public void SetInput(Vector2 input)
     {
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed); // This is where the max speed gets applied
-
-        //rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-        rb.AddForce(new Vector2(movement.x * moveSpeed, movement.y * moveSpeed) * Time.fixedDeltaTime);
+        steeringInput = input.x;
+        accelerationInput = input.y;
     }
-
-    
 }
-
-/*
-DONE:
-
-
-NEXT UP:
-Make the idle animation work
-Make bad guys that chase you
-Make obstacles
- */
