@@ -7,7 +7,8 @@ public class Timer : MonoBehaviour
 {
     public float timerValue;
     public bool timerRunning = true;
-    [SerializeField] public float startingValue = 30f;
+    [SerializeField] public float startingValue = 0f;
+    [SerializeField] public float moneyMultiplier = 100f;
     [SerializeField] private TMP_Text timerText;
 
 
@@ -15,6 +16,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         RestartTimer();
+        timerText = GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame
@@ -22,14 +24,10 @@ public class Timer : MonoBehaviour
     {
         if (timerRunning)
         {
-            timerValue += Time.deltaTime;
-            /* // Old code on if the timer ran out
-            if (timerValue < 0f && timerRunning)
-                TimerRunOut();
-            */
+            timerValue += Time.deltaTime * moneyMultiplier;
         }
 
-        timerText.text = timerValue.ToString("0.0");
+        timerText.text = "$" + timerValue.ToString("0");
     }
 
     public void RestartTimer()
@@ -53,13 +51,4 @@ public class Timer : MonoBehaviour
         timerValue += howMuch;
     }
 
-    public void TimerRunOut()
-    {
-        timerRunning = false;
-        timerValue = 0f; // set to 0 in case it went a little bit negative
-        FindObjectOfType<EndOfRaceScoring>().OutOfTime();
-        FindObjectOfType<WaveRaceMovement>().StopEngine();
-        FindObjectOfType<AudioManager>().Play("OuttaTime");
-
-    }
 }

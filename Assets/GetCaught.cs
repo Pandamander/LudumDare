@@ -29,6 +29,7 @@ public class GetCaught : MonoBehaviour
             Debug.Log("Caught!");
             endingUI.ShowUI();
             input.canStillMove = false;
+            FindObjectOfType<Timer>().StopTimer();
         }
     }
 
@@ -36,5 +37,6 @@ public class GetCaught : MonoBehaviour
     {
         input.ResetPlayer(); // Reset the player
         endingUI.HideUI();
+        FindObjectOfType<Timer>().RestartTimer();
     }
 }

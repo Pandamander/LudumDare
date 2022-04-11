@@ -5,21 +5,27 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: 9f3be0e8e24e242b0a6e57bb8416763f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LevelSelect.unity
     guid: 634de3ce7b0e04a17b06d717f58be42d
   - enabled: 1
-    path: Assets/Scenes/Level3.unity
-    guid: 420129286817e4118b7b7afc579e8a27
+    path: Assets/Scenes/Robbery.unity
+    guid: 4c071194b85604948b1bc1579e50f3ee
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Level2.unity
-    guid: 5bc509a5b64d945c9a73cffcccb44e56
+    path: Assets/Scenes/StoryScreen.unity
+    guid: 909d20803dac743cd8eae7d0dd805236
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 1c74ee5801b7f4108aa304fff96cf034

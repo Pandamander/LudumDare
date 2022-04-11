@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -51,7 +52,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Music
-    clip: {fileID: 8300000, guid: 3e8854137f3af42079bfd1dff025a716, type: 3}
+    clip: {fileID: 8300000, guid: ce06f7c4fdeaf4254adbbbe72038a25d, type: 3}
     volume: 1
     pitch: 1
     loop: 1
