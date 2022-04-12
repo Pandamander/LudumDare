@@ -10,11 +10,14 @@ public class EnemyAI : MonoBehaviour
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
     private Path path;
+    [SerializeField] private float activationDistance = 10f;
     int currentWayPoint = 0;
     bool reachedEndOfPath = false;
 
     Seeker seeker;
     Rigidbody2D rb;
+
+    private bool activated; 
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +46,9 @@ public class EnemyAI : MonoBehaviour
 
     void FixedUpdate() // Used whenever you want to work with Physics
     {
+        if (!CloseToPlayer()) // if not close to the player, then don't do any of this movement
+            return;
+
         if (path == null)
         {
             return;
@@ -67,5 +73,12 @@ public class EnemyAI : MonoBehaviour
         {
             currentWayPoint += 1; // Set to the next waypoint
         }
+
+        
+    }
+
+    private bool CloseToPlayer()
+    {
+        return (Vector3.Distance(transform.position, target.position) < activationDistance); // check if distance between this unit and player is close enough
     }
 }

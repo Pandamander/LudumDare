@@ -350,3 +350,11 @@ public class WaveRaceMovement : MonoBehaviour
 }
 
 
+
+/*
+Make level bigger
+Make intro art
+Make intro text typewrite
+Make intro text bubble
+
+ */ 
