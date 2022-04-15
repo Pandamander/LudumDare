@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class EnemyAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
-    private bool activated; 
+    public bool activated;
+    [SerializeField] GameObject lights;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +28,14 @@ public class EnemyAI : MonoBehaviour
         seeker = GetComponent<Seeker>();
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
-        
+
+        Restart();
+    }
+
+    public void Restart()
+    {
+        activated = false;
+        lights.gameObject.SetActive(false);
     }
 
     void UpdatePath()
@@ -46,8 +55,13 @@ public class EnemyAI : MonoBehaviour
 
     void FixedUpdate() // Used whenever you want to work with Physics
     {
-        if (!CloseToPlayer()) // if not close to the player, then don't do any of this movement
+
+        if (!activated) // if not activated, don't do any of this movement
+        {
+            CheckCloseToPlayer();
             return;
+        }
+        
 
         if (path == null)
         {
@@ -77,8 +91,21 @@ public class EnemyAI : MonoBehaviour
         
     }
 
-    private bool CloseToPlayer()
+    private void CheckCloseToPlayer()
     {
-        return (Vector3.Distance(transform.position, target.position) < activationDistance); // check if distance between this unit and player is close enough
+        if (activated)
+            return;
+
+        if (Vector3.Distance(transform.position, target.position) < activationDistance) // check if distance between this unit and player is close enough
+        {
+            ActivateEnemy();
+        }
+    }
+
+    private void ActivateEnemy()
+    {
+        activated = true;
+        lights.gameObject.SetActive(true);
+
     }
 }
