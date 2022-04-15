@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - TheLaw
+  - Hero
+  - DynamicObstacle
   layers:
   - Default
   - TransparentFX
