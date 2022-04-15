@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5463388218098305953}
   - component: {fileID: 5463388218098305967}
-  - component: {fileID: 5463388218098305966}
+  - component: {fileID: 4072633162994599622}
   m_Layer: 0
   m_Name: Oil
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5463388218098305966
+--- !u!114 &4072633162994599622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5463388218098305954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b64360d7d11548b4d87d794dbbe8f7de, type: 3}
+  m_Script: {fileID: 11500000, guid: f7fe64566ff253f4593ca74bdf7d944e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
+  type: 0
+  duration: 0

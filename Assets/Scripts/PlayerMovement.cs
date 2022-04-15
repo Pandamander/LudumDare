@@ -53,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
         float dragDamageFactor = 1.0f;
         float accelerationDamageFactor = 1.0f;
         float driftDamageFactor = 1.0f;
+        bool applyDrag = true;
+        bool applyDrift = true;
         bool applySeering = true;
 
 
@@ -61,29 +63,40 @@ public class PlayerMovement : MonoBehaviour
             switch (damageType)
             {
                 case DynamicObstacleDamageType.LowTraction:
-                    dragDamageFactor = 0.0f;
-                    driftDamageFactor = 4.0f;
+                    applyDrag = false;
+                    applyDrift = false;
 
                     break;
                 case DynamicObstacleDamageType.Slow:
-                    accelerationDamageFactor = 0.5f;
+                    accelerationDamageFactor = 0.1f;
+
                     break;
                 case DynamicObstacleDamageType.SpinNoSteering:
                     dragDamageFactor = 0.0f;
                     applySeering = false;
+
                     break;
             }
         }
 
         // Apply Drag
-        vehicleRb.drag = CalculateDrag() * dragDamageFactor;
+        if (applyDrag)
+        {
+            vehicleRb.drag = CalculateDrag() * dragDamageFactor;
+        } else
+        {
+            vehicleRb.drag = 0.0f;
+        }
 
         // Apply Acceleration
         vehicleRb.AddForce(CalculateAccelerationForce() * accelerationDamageFactor, ForceMode2D.Force);
 
         // Apply Drift
-        vehicleRb.velocity = CalculateDrift() * driftDamageFactor;
-
+        if (applyDrift)
+        {
+            vehicleRb.velocity = CalculateDrift() * driftDamageFactor;
+        }
+        
         // Apply Steering
         if (applySeering)
         {
@@ -129,8 +142,26 @@ public class PlayerMovement : MonoBehaviour
         // If the vehicle is being damaged, stop updating the input
         if (isBeingDamaged)
         {
-            steeringInput = lastInput.x;
-            accelerationInput = lastInput.y;
+            switch (damageType)
+            {
+                case DynamicObstacleDamageType.LowTraction:
+                    lastInput = input;
+                    steeringInput = input.x;
+                    accelerationInput = input.y;
+
+                    break;
+                case DynamicObstacleDamageType.Slow:
+                    lastInput = input;
+                    steeringInput = input.x;
+                    accelerationInput = input.y;
+
+                    break;
+                case DynamicObstacleDamageType.SpinNoSteering:
+                    steeringInput = lastInput.x;
+                    accelerationInput = lastInput.y;
+
+                    break;
+            }
         }
         else
         {

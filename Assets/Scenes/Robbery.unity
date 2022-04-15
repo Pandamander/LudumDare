@@ -61151,6 +61151,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 193268667}
     m_Modifications:
+    - target: {fileID: 4072633162994599622, guid: 3cbb57c911e295d4db6a994a5a98eb3c, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072633162994599622, guid: 3cbb57c911e295d4db6a994a5a98eb3c, type: 3}
+      propertyPath: duration
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5463388218098305953, guid: 3cbb57c911e295d4db6a994a5a98eb3c, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -61202,10 +61210,6 @@ PrefabInstance:
     - target: {fileID: 5463388218098305954, guid: 3cbb57c911e295d4db6a994a5a98eb3c, type: 3}
       propertyPath: m_TagString
       value: DynamicObstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 5463388218098305966, guid: 3cbb57c911e295d4db6a994a5a98eb3c, type: 3}
-      propertyPath: duration
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cbb57c911e295d4db6a994a5a98eb3c, type: 3}
