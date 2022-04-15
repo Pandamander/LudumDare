@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
                     accelerationDamageFactor = 0.5f;
                     break;
                 case DynamicObstacleDamageType.SpinNoSteering:
+                    dragDamageFactor = 0.0f;
                     applySeering = false;
                     break;
             }
