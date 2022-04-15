@@ -5,7 +5,7 @@ using UnityEngine;
 public enum DynamicObstacleDamageType
 {
     SpinNoSteering,
-    LowTraction,
+    TiresBlown,
     Slow
 }
 

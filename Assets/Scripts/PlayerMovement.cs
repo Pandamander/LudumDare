@@ -18,18 +18,23 @@ public class PlayerMovement : MonoBehaviour
     float damageDuration = 0.0f;
     DynamicObstacleDamageType damageType;
 
+    private void Start()
+    {
+        GetComponent<ParticleSystem>().Stop();
+    }
+
     private void Update()
     {
         if (isBeingDamaged)
         {
-
             switch (damageType)
             {
-                case DynamicObstacleDamageType.LowTraction:
+                case DynamicObstacleDamageType.TiresBlown:
                     break;
                 case DynamicObstacleDamageType.Slow:
                     break;
                 case DynamicObstacleDamageType.SpinNoSteering:
+                    // Janky - maybe apply impulses instead in FixedUpdate
                     transform.Rotate(0.0f, 0.0f, 360.0f * Time.deltaTime);
 
                     break;
@@ -43,13 +48,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 damageDuration = 0.0f;
                 isBeingDamaged = false;
+                GetComponent<ParticleSystem>().Stop();
             }
         }
     }
 
     void FixedUpdate()
     {
-
         float dragDamageFactor = 1.0f;
         float accelerationDamageFactor = 1.0f;
         float driftDamageFactor = 1.0f;
@@ -57,12 +62,11 @@ public class PlayerMovement : MonoBehaviour
         bool applyDrift = true;
         bool applySeering = true;
 
-
         if (isBeingDamaged)
         {
             switch (damageType)
             {
-                case DynamicObstacleDamageType.LowTraction:
+                case DynamicObstacleDamageType.TiresBlown:
                     applyDrag = false;
                     applyDrift = false;
 
@@ -144,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
         {
             switch (damageType)
             {
-                case DynamicObstacleDamageType.LowTraction:
+                case DynamicObstacleDamageType.TiresBlown:
                     lastInput = input;
                     steeringInput = input.x;
                     accelerationInput = input.y;
@@ -185,5 +189,11 @@ public class PlayerMovement : MonoBehaviour
         isBeingDamaged = true;
         damageType = type;
         damageDuration = duration;
+
+        if (damageType == DynamicObstacleDamageType.TiresBlown)
+        {
+            // Enable sparks for Tire Strip (needs work on material)
+            GetComponent<ParticleSystem>().Play();
+        }
     }
 }
