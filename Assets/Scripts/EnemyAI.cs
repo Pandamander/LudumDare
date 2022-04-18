@@ -82,6 +82,11 @@ public class EnemyAI : MonoBehaviour
 
         rb.AddForce(force);
 
+        Quaternion lookAt = Quaternion.LookRotation(rb.velocity);
+        float lookAtAngle = lookAt.eulerAngles.y;// * Mathf.Rad2Deg;
+        Debug.Log("LOOK ANGLE: " + lookAtAngle);
+        //rb.MoveRotation(lookAtAngle);
+
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWayPoint]); // Distance between current position and next waypoint
         if (distance < nextWaypointDistance) // If already reached the next waypoint
         {
