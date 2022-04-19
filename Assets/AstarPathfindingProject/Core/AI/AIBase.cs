@@ -438,13 +438,24 @@ namespace Pathfinding {
 		/// Called every physics update.
 		/// If rigidbodies are used then all movement happens here.
 		/// </summary>
+		private float activationDsitance = 10.0f;
 		protected virtual void FixedUpdate () {
 			if (!(rigid == null && rigid2D == null) && canMove) {
 				Vector3 nextPosition;
 				Quaternion nextRotation;
 				MovementUpdate(Time.fixedDeltaTime, out nextPosition, out nextRotation);
 				FinalizeMovement(nextPosition, nextRotation);
-			}
+			} else
+            {
+				if (Vector3.Distance(position, destination) < activationDsitance)
+                {
+					canMove = true;
+					transform.FindChild("Point Light").gameObject.SetActive(true);
+                } else
+                {
+					transform.FindChild("Point Light").gameObject.SetActive(false);
+				}
+            }
 		}
 
 		/// <summary>\copydoc Pathfinding::IAstarAI::MovementUpdate</summary>

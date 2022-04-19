@@ -108,6 +108,5 @@ public class EnemyAI : MonoBehaviour
     {
         activated = true;
         lights.gameObject.SetActive(true);
-
     }
 }
