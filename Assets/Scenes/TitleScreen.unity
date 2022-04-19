@@ -414,10 +414,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.15975733
     y: 0
-    width: 1
-    height: 0.99979836
+    width: 0.98326033
+    height: 0.7715092
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -901,7 +901,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: By DREAM FACADE, Coopal00ps, and Pandamander
+  m_text: By I_never_finish_anyth, Coopal00ps, and Pandamander
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f07000dae16a64fcc979bffe80b7fe18, type: 2}
   m_sharedMaterial: {fileID: -7358220893835152624, guid: f07000dae16a64fcc979bffe80b7fe18, type: 2}
