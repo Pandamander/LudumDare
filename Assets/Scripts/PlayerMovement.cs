@@ -122,6 +122,15 @@ public class PlayerMovement : MonoBehaviour
             return 0;
         }
     }
+
+    private float calculatedLateralVelocity
+    {
+        get
+        {
+            return Vector2.Dot(transform.right, vehicleRb.velocity);
+        }
+    }
+
     private Vector2 CalculateAccelerationForce()
     {
         return transform.up * accelerationInput * accelerationFactor;
@@ -139,6 +148,27 @@ public class PlayerMovement : MonoBehaviour
         float steeringMinSpeedFactor = Mathf.Clamp01(vehicleRb.velocity.magnitude / 2);
         rotationAngle -= steeringInput * turnFactor * steeringMinSpeedFactor;
         return rotationAngle;
+    }
+
+    public bool TireSkid(out float lateralVelocity, out bool isBraking)
+    {
+        lateralVelocity = calculatedLateralVelocity;
+        isBraking = false;
+
+        float forwardVelocity = Vector2.Dot(transform.up, vehicleRb.velocity);
+
+        if (accelerationFactor < 0 && forwardVelocity > 0)
+        {
+            isBraking = true;
+            return true;
+        }
+
+        if (Mathf.Abs(lateralVelocity) > 3.5f)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public void SetInput(Vector2 input)

@@ -41,11 +41,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3171225869
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 3171225869
+  - name: TireSkidMarks
+    uniqueID: 66561283
     locked: 0
   - name: Foreground
     uniqueID: 2020032327
