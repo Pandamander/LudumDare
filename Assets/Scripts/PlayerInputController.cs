@@ -20,6 +20,7 @@ public class PlayerInputController : MonoBehaviour
     {
         canStillMove = true;
         gameObject.transform.position = startPosition.position;
+        playerMovement.ResetVehicle();
     }
 
     void Update()
@@ -27,11 +28,11 @@ public class PlayerInputController : MonoBehaviour
         if (canStillMove) // Can't move if you've been caught
         {
             playerMovement.SetInput(
-            new Vector2(
-                Input.GetAxis("Horizontal"),
-                Input.GetAxis("Vertical")
-            )
-        );
+                new Vector2(
+                    Input.GetAxis("Horizontal"),
+                    Input.GetAxis("Vertical")
+                )
+            );
         }
     }
 }

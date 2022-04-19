@@ -205,6 +205,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void ResetVehicle()
+    {
+        // [WIP] - Elliott
+        vehicleRb.velocity = Vector2.zero;
+        vehicleRb.angularVelocity = 0.0f;
+        vehicleRb.drag = 0.0f;
+        vehicleRb.rotation = 0.0f;
+        transform.rotation = Quaternion.identity;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("DynamicObstacle"))
