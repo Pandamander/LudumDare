@@ -450,16 +450,24 @@ namespace Pathfinding {
 				if (Vector3.Distance(position, destination) < activationDsitance)
                 {
 					canMove = true;
-					transform.FindChild("Point Light").gameObject.SetActive(true);
+					transform.Find("Point Light").gameObject.SetActive(true);
                 } else
                 {
-					transform.FindChild("Point Light").gameObject.SetActive(false);
+					transform.Find("Point Light").gameObject.SetActive(false);
 				}
             }
 		}
 
-		/// <summary>\copydoc Pathfinding::IAstarAI::MovementUpdate</summary>
-		public void MovementUpdate (float deltaTime, out Vector3 nextPosition, out Quaternion nextRotation) {
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+			if (collision.gameObject.tag == "Hero")
+            {
+				isStopped = true;
+            }
+        }
+
+        /// <summary>\copydoc Pathfinding::IAstarAI::MovementUpdate</summary>
+        public void MovementUpdate (float deltaTime, out Vector3 nextPosition, out Quaternion nextRotation) {
 			lastDeltaTime = deltaTime;
 			MovementUpdateInternal(deltaTime, out nextPosition, out nextRotation);
 		}
