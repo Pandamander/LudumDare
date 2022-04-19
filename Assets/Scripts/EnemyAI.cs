@@ -55,14 +55,12 @@ public class EnemyAI : MonoBehaviour
 
     void FixedUpdate() // Used whenever you want to work with Physics
     {
-
         if (!activated) // if not activated, don't do any of this movement
         {
             CheckCloseToPlayer();
             return;
         }
         
-
         if (path == null)
         {
             return;
@@ -78,22 +76,21 @@ public class EnemyAI : MonoBehaviour
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWayPoint] - rb.position).normalized; // Set direction. Explanation: https://www.youtube.com/watch?v=jvtFUfJ6CP8&t=17m
+
         Vector2 force = direction * speed * Time.deltaTime; // Set the movement speed
 
         rb.AddForce(force);
-
-        Quaternion lookAt = Quaternion.LookRotation(rb.velocity);
-        float lookAtAngle = lookAt.eulerAngles.y;// * Mathf.Rad2Deg;
-        Debug.Log("LOOK ANGLE: " + lookAtAngle);
-        //rb.MoveRotation(lookAtAngle);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWayPoint]); // Distance between current position and next waypoint
         if (distance < nextWaypointDistance) // If already reached the next waypoint
         {
             currentWayPoint += 1; // Set to the next waypoint
         }
-
-        
+        else
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            rb.MoveRotation(angle);
+        }
     }
 
     private void CheckCloseToPlayer()
