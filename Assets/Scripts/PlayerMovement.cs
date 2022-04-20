@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float accelerationFactor = 10.0f;
+    public float maxSpeed = 5.0f;
     public float turnFactor = 3.5f;
     public float driftFactor = 0.95f;
     public Rigidbody2D vehicleRb;
@@ -133,7 +134,16 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 CalculateAccelerationForce()
     {
-        return transform.up * accelerationInput * accelerationFactor;
+        // First check max speed
+        float forwardVelocity = Vector2.Dot(transform.up, vehicleRb.velocity);
+        if (forwardVelocity > maxSpeed && accelerationInput > 0)
+        {
+            return Vector2.zero;
+        }
+        else
+        {
+            return transform.up * accelerationInput * accelerationFactor;
+        }
     }
 
     private Vector2 CalculateDrift()
