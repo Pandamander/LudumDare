@@ -35,12 +35,6 @@ public class GetCaught : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
-
-        /*
-        input.ResetPlayer(); // Reset the player
-        endingUI.HideUI();
-        FindObjectOfType<Timer>().RestartTimer();
-        */
     }
 
     public void EndOfGame()

@@ -13,14 +13,19 @@ public class PlayerInputController : MonoBehaviour
     private void Start()
     {
         ResetPlayer();
-
     }
 
     public void ResetPlayer()
     {
         canStillMove = true;
         gameObject.transform.position = startPosition.position;
-        playerMovement.ResetVehicle();
+        playerMovement.StopVehicle();
+    }
+
+    public void Stop()
+    {
+        canStillMove = false;
+        playerMovement.StopVehicle();
     }
 
     void Update()

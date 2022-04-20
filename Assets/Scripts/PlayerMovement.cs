@@ -215,9 +215,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void ResetVehicle()
+    public void StopVehicle()
     {
-        // [WIP] - Elliott
         vehicleRb.velocity = Vector2.zero;
         vehicleRb.angularVelocity = 0.0f;
         vehicleRb.drag = 0.0f;
