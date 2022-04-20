@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GetCaught : MonoBehaviour
 {
@@ -26,17 +27,27 @@ public class GetCaught : MonoBehaviour
     {
         if (collision.gameObject.tag == "TheLaw") // Get caught
         {
-            Debug.Log("Caught!");
-            endingUI.ShowUI();
-            input.canStillMove = false;
-            FindObjectOfType<Timer>().StopTimer();
+            EndOfGame();
         }
     }
 
     private void RestartGame()
     {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+
+        /*
         input.ResetPlayer(); // Reset the player
         endingUI.HideUI();
         FindObjectOfType<Timer>().RestartTimer();
+        */
+    }
+
+    public void EndOfGame()
+    {
+        Debug.Log("Caught!");
+        endingUI.ShowUI();
+        input.canStillMove = false;
+        FindObjectOfType<Timer>().StopTimer();
     }
 }
