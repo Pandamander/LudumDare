@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GetCaught : MonoBehaviour
 {
     [SerializeField] private OnOffUI endingUI;
+    [SerializeField] private Timer timer;
     private PlayerInputController input;
 
     // Start is called before the first frame update
@@ -39,9 +40,8 @@ public class GetCaught : MonoBehaviour
 
     public void EndOfGame()
     {
-        Debug.Log("Caught!");
-        endingUI.ShowUI();
+        timer.StopTimer();
+        endingUI.ShowEndGameUI(timer.timerValue);
         input.canStillMove = false;
-        FindObjectOfType<Timer>().StopTimer();
     }
 }
