@@ -223,7 +223,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 191375773, guid: 3fc7641cf226d4ff9927b8ed3c50bd7c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accelerationFactor: 8
-  maxSpeed: 5
+  maxSpeed: 7
   turnFactor: 3.5
   driftFactor: 0.95
   vehicleRb: {fileID: 944665406530166800}

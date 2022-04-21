@@ -25,6 +25,7 @@ public class TireTrailRendererBehavior : MonoBehaviour
     {
         if (playerMovement.TireSkid(out float lateralVelocity, out bool isBraking))
         {
+            AudioManager.Instance.PlaySkid();
             trailRenderer.emitting = true;
         }
         else

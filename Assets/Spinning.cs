@@ -14,6 +14,6 @@ public class Spinning : MonoBehaviour
     void Update()
     {
         transform.Rotate(0, 0, Time.deltaTime*5000);
-        Debug.Log(Time.deltaTime);
+        //Debug.Log(Time.deltaTime);
     }
 }

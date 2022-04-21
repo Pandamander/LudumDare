@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<ParticleSystem>().Stop();
+        //GetComponent<ParticleSystem>().Stop();
     }
 
     private void Update()
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 damageDuration = 0.0f;
                 isBeingDamaged = false;
-                GetComponent<ParticleSystem>().Stop();
+                //GetComponent<ParticleSystem>().Stop();
             }
         }
     }
@@ -134,6 +134,16 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 CalculateAccelerationForce()
     {
+        // Play acceleration sound if accelerating in forward or reverse
+        if (accelerationInput != 0)
+        {
+            AudioManager.Instance.PlayAccelerate();
+        }
+        else
+        {
+            AudioManager.Instance.StopPlayingAccelerate();
+        }
+
         // First check max speed
         float forwardVelocity = Vector2.Dot(transform.up, vehicleRb.velocity);
         if (forwardVelocity > maxSpeed && accelerationInput > 0)
