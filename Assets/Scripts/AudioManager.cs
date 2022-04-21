@@ -83,6 +83,11 @@ public class AudioManager : MonoBehaviour
         StopPlaying("Accelerate");
     }
 
+    public void PlayCrash()
+    {
+        PlaySoundEffect("Crash");
+    }
+
     private void PlaySoundEffect(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);

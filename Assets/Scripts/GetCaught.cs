@@ -28,6 +28,7 @@ public class GetCaught : MonoBehaviour
     {
         if (collision.gameObject.tag == "TheLaw") // Get caught
         {
+            AudioManager.Instance.PlayCrash();
             EndOfGame();
         }
     }
