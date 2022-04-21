@@ -242,7 +242,6 @@ public class PlayerMovement : MonoBehaviour
         if (damageType == DynamicObstacleDamageType.TiresBlown)
         {
             // Enable sparks for Tire Strip (needs work on material)
-            GetComponent<ParticleSystem>().Play();
         }
     }
 }
