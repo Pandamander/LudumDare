@@ -450,12 +450,52 @@ namespace Pathfinding {
 				if (Vector3.Distance(position, destination) < activationDsitance)
                 {
 					canMove = true;
-					transform.Find("Point Light").gameObject.SetActive(true);
-                } else
+					ActivateLights();
+				} else
                 {
-					transform.Find("Point Light").gameObject.SetActive(false);
+					DeactivateLights();
 				}
             }
+		}
+
+		private void ActivateLights()
+        {
+			Transform lightR = transform.Find("Point Light-R");
+			Transform lightB = transform.Find("Point Light-B");
+			Transform mallCopLight = transform.Find("Point Light");
+
+			if (lightR != null)
+            {
+				lightR.gameObject.SetActive(true);
+            }
+			if (lightB != null)
+            {
+				lightB.gameObject.SetActive(true);
+			}
+			if (mallCopLight != null)
+            {
+				mallCopLight.gameObject.SetActive(true);
+			}
+		}
+
+		private void DeactivateLights()
+        {
+			Transform lightR = transform.Find("Point Light-R");
+			Transform lightB = transform.Find("Point Light-B");
+			Transform mallCopLight = transform.Find("Point Light");
+
+			if (lightR != null)
+			{
+				lightR.gameObject.SetActive(false);
+			}
+			if (lightB != null)
+			{
+				lightB.gameObject.SetActive(false);
+			}
+			if (mallCopLight != null)
+			{
+				mallCopLight.gameObject.SetActive(false);
+			}
 		}
 
         private void OnCollisionEnter2D(Collision2D collision)

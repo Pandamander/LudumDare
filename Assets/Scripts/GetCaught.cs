@@ -33,6 +33,14 @@ public class GetCaught : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "TheLaw") // Get caught
+        {
+            EndOfGame();
+        }
+    }
+
     private void RestartGame()
     {
         Scene scene = SceneManager.GetActiveScene();
