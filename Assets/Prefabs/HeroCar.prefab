@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 944665406530166804}
   - component: {fileID: 944665406530166806}
   - component: {fileID: 944665406530166807}
+  - component: {fileID: 1248003354968900326}
   m_Layer: 0
   m_Name: HeroCar
   m_TagString: Hero
@@ -318,6 +319,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.020300388, y: 0.013533533}
   m_Size: {x: 0.5218992, y: 0.78543293}
   m_Direction: 0
+--- !u!114 &1248003354968900326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944665406530166829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d591426a507786440a309765370c60d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &944665407848544854
 GameObject:
   m_ObjectHideFlags: 0

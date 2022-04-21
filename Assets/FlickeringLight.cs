@@ -6,7 +6,6 @@ public class FlickeringLight : MonoBehaviour
 {
     private bool isFlickering = false;
     private float timeDelay;
-    private bool hasStartedFlickering = false;
     // Start is called before the first frame update
 
     IEnumerator FlickerLight2()

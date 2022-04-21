@@ -99,3 +99,27 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: Skid
+    clip: {fileID: 8300000, guid: fa22d80eb3885814da4bcdda96e25c87, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Accelerate
+    clip: {fileID: 8300000, guid: deaed4de2900f614eb3edf33e8bb51c7, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Crash
+    clip: {fileID: 8300000, guid: 185f6069f1aeeea4bbb6a755c038d738, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Alarm
+    clip: {fileID: 8300000, guid: ceb16d1a0c66f914d8a887e8544d424c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

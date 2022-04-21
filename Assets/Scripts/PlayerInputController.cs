@@ -12,6 +12,7 @@ public class PlayerInputController : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.PlayAlarm();
         ResetPlayer();
     }
 
@@ -19,7 +20,7 @@ public class PlayerInputController : MonoBehaviour
     {
         canStillMove = true;
         gameObject.transform.position = startPosition.position;
-        playerMovement.StopVehicle();
+        gameObject.transform.rotation = startPosition.rotation;
     }
 
     public void Stop()

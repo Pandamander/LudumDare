@@ -88,6 +88,11 @@ public class AudioManager : MonoBehaviour
         PlaySoundEffect("Crash");
     }
 
+    public void PlayAlarm()
+    {
+        PlaySoundEffect("Alarm");
+    }
+
     private void PlaySoundEffect(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);

@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     bool isBeingDamaged = false;
     float damageDuration = 0.0f;
     DynamicObstacleDamageType damageType;
+    private bool stopUpdatingMotion = false;
 
     private void Start()
     {
@@ -26,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (stopUpdatingMotion)
+            return;
+
         if (isBeingDamaged)
         {
             switch (damageType)
@@ -56,6 +60,9 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (stopUpdatingMotion)
+            return;
+
         float dragDamageFactor = 1.0f;
         float accelerationDamageFactor = 1.0f;
         float driftDamageFactor = 1.0f;
@@ -227,11 +234,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void StopVehicle()
     {
+        Debug.Log("STOPPING VEHICLE");
+        accelerationInput = 0.0f;
+        steeringInput = 0.0f;
         vehicleRb.velocity = Vector2.zero;
         vehicleRb.angularVelocity = 0.0f;
-        vehicleRb.drag = 0.0f;
-        vehicleRb.rotation = 0.0f;
-        transform.rotation = Quaternion.identity;
+        vehicleRb.freezeRotation = true;
+        stopUpdatingMotion = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
