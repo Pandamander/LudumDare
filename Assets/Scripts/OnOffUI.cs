@@ -59,7 +59,7 @@ public class OnOffUI : MonoBehaviour
     {
         string[] tiers = { "F", "D", "C", "B", "A", "S" };
 
-        float moneyTier = 1000.0f;
+        float moneyTier = 10000.0f;
 
         int tierIndex = (int)(moneyScore / moneyTier);
 
